@@ -22,7 +22,10 @@ public class UserResource {
 		return "Olá, seja bem-vindo!";
 	}
 	
-	@RequestMapping(value = "/user", method = RequestMethod.POST)
+	@RequestMapping(
+			value = "/user", 
+			method = RequestMethod.POST, 
+			produces = "application/json")
 	public @ResponseBody User user() {	
 		User user = new User();
 		user.setName("Gabriel");
