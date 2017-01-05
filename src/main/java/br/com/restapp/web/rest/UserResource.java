@@ -10,5 +10,12 @@ public class UserResource {
 	public String index(){
 		return "Olá, seja bem-vindo!";
 	}
+	
+	@RequestMapping("/user")
+	private String usuario(){	
+		return "Teste";
+	}
+	
+	
 
 }
