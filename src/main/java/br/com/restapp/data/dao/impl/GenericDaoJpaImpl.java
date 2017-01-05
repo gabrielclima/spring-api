@@ -4,18 +4,16 @@ import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
+import br.com.restapp.data.HibernateFactory;
 import br.com.restapp.data.dao.GenericDao;
 
 public class GenericDaoJpaImpl<T, PK extends Serializable> implements GenericDao<T, PK> {
 
     private Class<T> type;
 	
-    @PersistenceContext
-	protected EntityManager em;
+	protected EntityManager em = HibernateFactory.getEntityManager();
     
-    @SuppressWarnings("unchecked")
 	public GenericDaoJpaImpl() {
     	ParameterizedType genericSuperclass = (ParameterizedType) getClass()
                 .getGenericSuperclass();

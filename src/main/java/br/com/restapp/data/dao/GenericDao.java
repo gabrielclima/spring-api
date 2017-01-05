@@ -10,3 +10,4 @@ public interface GenericDao<T, I extends Serializable> {
 	void remove(T t);	
 	
 }
+	
