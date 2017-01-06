@@ -1,10 +1,13 @@
 package br.com.restapp.data.model;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 public class User {
@@ -14,16 +17,19 @@ public class User {
 	@Id
 	@GeneratedValue
 	private Long id;
-		
+
+	@NotNull
 	private String name;
 	
+	@NotNull
 	private String email;
 	
 	private String password;
+
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
+	private LocalDateTime created;
 	
-	private Date created;
-	
-	private Date lastLogin;
+	private LocalDateTime lastLogin;
 	
 	private String token;
 	
@@ -59,28 +65,28 @@ public class User {
 		this.password = password;
 	}
 
-	public Date getCreated() {
+	public LocalDateTime getCreated() {
 		return created;
 	}
 
-	public void setCreated(Date created) {
+	public void setCreated(LocalDateTime created) {
 		this.created = created;
 	}
 
-	public Date getLastLogin() {
-		return lastLogin;
-	}
-
-	public void setLastLogin(Date lastLogin) {
-		this.lastLogin = lastLogin;
-	}
-	
 	public String getToken() {
 		return token;
 	}
 
 	public void setToken(String token) {
 		this.token = token;
+	}
+
+	public LocalDateTime getLastLogin() {
+		return lastLogin;
+	}
+
+	public void setLastLogin(LocalDateTime lastLogin) {
+		this.lastLogin = lastLogin;
 	}
 
 	@Override
