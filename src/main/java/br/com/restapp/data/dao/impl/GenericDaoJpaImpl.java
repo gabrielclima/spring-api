@@ -2,6 +2,8 @@ package br.com.restapp.data.dao.impl;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
+import java.util.List;
+import java.util.Map;
 
 import javax.persistence.EntityManager;
 
@@ -47,6 +49,20 @@ public class GenericDaoJpaImpl<T, PK extends Serializable> implements GenericDao
 		this.em.getTransaction().begin();
         this.em.remove(this.em.getReference(type, t));
         this.em.getTransaction().commit();
+	}
+	
+	public List<T> findByQueryAndNamedParams(final String jpql,
+			final Map<String, ? extends Object> params) {
+
+		javax.persistence.Query query = this.em.createQuery(jpql);
+
+		for (final Map.Entry<String, ? extends Object> param : params
+				.entrySet()) {
+			query.setParameter(param.getKey(), param.getValue());
+		}
+
+		final List<T> result = (List<T>) query.getResultList();
+		return result;
 	}
 	
 }

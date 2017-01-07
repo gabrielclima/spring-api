@@ -31,11 +31,11 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-jetty")
     compile("org.springframework.boot:spring-boot-starter-actuator")
     compile("org.hibernate:hibernate-core:5.2.6.Final")
-    compile("com.auth0:java-jwt:3.1.0") 
-    compile 'io.jsonwebtoken:jjwt:0.7.0'
+    compile("io.jsonwebtoken:jjwt:0.7.0")
     compile("org.springframework.boot:spring-boot-starter-jdbc")
     compile("com.h2database:h2:1.4.193")
-    
+    compile group: 'org.springframework', name: 'spring-test', version: '2.5'
+    compile group: 'org.mockito', name: 'mockito-all', version: '1.9.5'
         
     testCompile("junit:junit")
 }

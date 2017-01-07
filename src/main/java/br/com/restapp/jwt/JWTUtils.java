@@ -1,7 +1,9 @@
-package jwt;
+package br.com.restapp.jwt;
 
 import java.util.Date;
 
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -21,4 +23,10 @@ public class JWTUtils {
 		return jwtBuilder.compact();
 	}
 
+	public static void validateToken(String token){
+		Jws<Claims> claims = Jwts.parser()
+				.setSigningKey(SECRET)
+				.parseClaimsJws(token);
+	}
+	
 }

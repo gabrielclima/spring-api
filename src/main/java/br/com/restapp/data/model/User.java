@@ -1,11 +1,14 @@
 package br.com.restapp.data.model;
 
-import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CollectionTable;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Email;
@@ -27,6 +30,13 @@ public class User {
 	@Email
 	@NotNull
 	private String email;
+	
+	@ElementCollection
+	@CollectionTable(
+			name = "phone",
+			joinColumns = @JoinColumn(name="user_id")
+			)
+	private List<Phone> phones;
 	
 	@NotNull
 	private String password;
@@ -99,6 +109,14 @@ public class User {
 
 	public void setCreated(Date created) {
 		this.created = created;
+	}
+	
+	public List<Phone> getPhones() {
+		return phones;
+	}
+
+	public void setPhones(List<Phone> phones) {
+		this.phones = phones;
 	}
 
 	@Override

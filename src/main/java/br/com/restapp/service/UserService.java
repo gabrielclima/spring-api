@@ -7,6 +7,10 @@ import br.com.restapp.data.model.User;
 public interface UserService {
 
 	@Transactional
-	void createUser(User user);
+	User createUser(User user);
+	
+	boolean validate(User user, String token);
+
+	boolean authenticate(User user);
 	
 }
