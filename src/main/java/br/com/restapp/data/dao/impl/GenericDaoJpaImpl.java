@@ -23,7 +23,9 @@ public class GenericDaoJpaImpl<T, PK extends Serializable> implements GenericDao
 	
 	@Override
 	public T save(T t) {
+		this.em.getTransaction().begin();
 		this.em.persist(t);
+		this.em.getTransaction().commit();
         return t;
 	}
 
@@ -34,13 +36,17 @@ public class GenericDaoJpaImpl<T, PK extends Serializable> implements GenericDao
 
 	@Override
 	public T merge(T t) {
-        return this.em.merge(t);   
-
+		this.em.getTransaction().begin();
+        t = this.em.merge(t);   
+        this.em.getTransaction().commit();
+        return t;
 	}
 
 	@Override
 	public void remove(T t) {
+		this.em.getTransaction().begin();
         this.em.remove(this.em.getReference(type, t));
+        this.em.getTransaction().commit();
 	}
 	
 }

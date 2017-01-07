@@ -1,11 +1,14 @@
 package br.com.restapp.data.model;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Email;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -21,15 +24,24 @@ public class User {
 	@NotNull
 	private String name;
 	
+	@Email
 	@NotNull
 	private String email;
 	
+	@NotNull
 	private String password;
 
-	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
-	private LocalDateTime created;
+	@JsonFormat(
+			shape = JsonFormat.Shape.STRING, 
+			pattern = "dd-MM-yyyy  HH:mm:ss a z", 
+			timezone = "GMT-2")
+	private Date created;
 	
-	private LocalDateTime lastLogin;
+	@JsonFormat(
+			shape = JsonFormat.Shape.STRING, 
+			pattern="dd-MM-yyyy HH:mm:ss a z", 
+			timezone = "GMT-2")
+	private Date lastLogin;
 	
 	private String token;
 	
@@ -65,14 +77,6 @@ public class User {
 		this.password = password;
 	}
 
-	public LocalDateTime getCreated() {
-		return created;
-	}
-
-	public void setCreated(LocalDateTime created) {
-		this.created = created;
-	}
-
 	public String getToken() {
 		return token;
 	}
@@ -81,12 +85,20 @@ public class User {
 		this.token = token;
 	}
 
-	public LocalDateTime getLastLogin() {
+	public Date getLastLogin() {
 		return lastLogin;
 	}
 
-	public void setLastLogin(LocalDateTime lastLogin) {
+	public void setLastLogin(Date lastLogin) {
 		this.lastLogin = lastLogin;
+	}
+
+	public Date getCreated() {
+		return created;
+	}
+
+	public void setCreated(Date created) {
+		this.created = created;
 	}
 
 	@Override
