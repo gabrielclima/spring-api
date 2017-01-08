@@ -23,6 +23,8 @@ Está aplicação também está hospedada no Heroku e você pode usá-la, basta 
 
 ### POST /register
 
+Você poderá usar este endpoint para registar usuários.
+
 Exemplo de request
 ```
 $ curl -H "Content-Type: application/json" -X POST -d
@@ -59,6 +61,8 @@ Response esperada
 
 ### POST /login
 
+Para gerar um novo token, caso sua sessão tenha expirado, você poderá usar este endpoint. O token gerado nesse endpoint só dura o tempo de 30 minutos.
+
 Exemplo de request
 ```
 $ curl -H "Content-Type: application/json" -X POST -d
@@ -88,6 +92,8 @@ Response esperada
 ```
 
 ### POST /profile
+
+Neste endpoint, você pode obter o perfil de um usuário. Lembre-se de passar o token na header, com a chave 'Authorization'.
 
 Exemplo de request
 ```
