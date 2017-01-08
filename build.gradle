@@ -21,6 +21,12 @@ repositories {
     mavenCentral()
 }
 
+test.scanForTestClasses = false
+test {
+    include 'test/**/*UserTest.class'
+    exclude '**/*$*.class' // exclude anonymous inner classes
+}
+
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
@@ -36,6 +42,6 @@ dependencies {
     compile("com.h2database:h2:1.4.193")
     compile group: 'org.springframework', name: 'spring-test', version: '2.5'
     compile group: 'org.mockito', name: 'mockito-all', version: '1.9.5'
-        
+
     testCompile("junit:junit")
 }
